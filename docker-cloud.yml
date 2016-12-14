@@ -1,8 +1,25 @@
+lb:
+  image: 'dockercloud/haproxy:latest'
+  links:
+    - web
+  ports:
+    - '80:80'
+  restart: always
+  roles:
+    - global
+redis:
+  environment:
+    - REDIS_APPENDFSYNC=always
+    - REDIS_APPENDONLY=yes
+    - REDIS_PASS=password
+  image: 'redis:latest'
+  restart: always
 web:
-  image: dockercloud/quickstart-python
+  deployment_strategy: high_availability
+  environment:
+    - NAME=Friendly Users
+  image: 'dockercloud/quickstart-python:latest'
   links:
     - redis
-  ports:
-    - "80"
-redis:
-  image: redis
+  restart: always
+  target_num_containers: 4
