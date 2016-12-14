@@ -22,4 +22,6 @@ web:
   links:
     - redis
   restart: always
+  autoredeploy: true
+  sequential_deployment: true
   target_num_containers: 4

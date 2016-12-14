@@ -18,7 +18,8 @@ def hello():
 
     html = "<h3>Hello {name}!</h3>" \
            "<b>Hostname:</b> {hostname}<br/>" \
-           "<b>Visits:</b> {visits}"
+           "<b>Visits:</b> {visits}<br/>" \
+           "<b>Edit count:</b> 1"
     return html.format(name=os.getenv('NAME', "world"), hostname=socket.gethostname(), visits=visits)
 
 
